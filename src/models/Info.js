@@ -5,7 +5,11 @@ const Schema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-    },    
+    },
+    phone: {
+        type: String,
+        required: true
+    }, 
     type: {
         type: String,
         required: true,
@@ -20,7 +24,8 @@ const Schema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     }
 })
 

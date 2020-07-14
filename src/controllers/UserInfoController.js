@@ -4,6 +4,7 @@ module.exports = {
     async create (req, res) {
         const {
             name,
+            phone,
             type,
             city,
             latitude,
@@ -25,6 +26,7 @@ module.exports = {
 
             const createdInfo = await Info.create({
                 name,
+                phone,
                 type,
                 city,
                 location,
@@ -38,10 +40,10 @@ module.exports = {
     },
     async read (req, res) {
         const { user_id } = req.params
-        console.log(user_id)
+        
         try {
             const userInfo = await Info.findOne({ user: user_id }).populate('user')
-
+            
             return res.status(200).send(userInfo)            
         } catch (err) {
             return res.status(400).send(err)
@@ -50,6 +52,7 @@ module.exports = {
     async update (req, res) {
         const {
             name,
+            phone,
             type,
             city,
             latitude,
@@ -71,6 +74,7 @@ module.exports = {
             
             const updatedUserInfo = await Info.findOneAndUpdate({ user: user_id }, {
                 name,
+                phone,
                 type,
                 city,
                 location
