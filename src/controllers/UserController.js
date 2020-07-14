@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Info = require('../models/Info')
+const Product = require('../models/Product')
 const hashPassword = require('../utils/hashPassword')
 
 module.exports = {
@@ -68,8 +69,9 @@ module.exports = {
 
         try {            
             const deletedUser = await User.findOneAndDelete({ _id: user_id }) 
-            const deletedUserInfo = await Info.findOneAndDelete({ user: user_id }) 
-            console.log(deletedUserInfo)          
+            const deletedUserInfo = await Info.findOneAndDelete({ user: user_id })
+            const deletedProducts = await Product.deleteMany({ user: user_id })  
+                     
             return res.status(200).send({ message: `User ${deletedUser.email} successfully deleted` })
         } catch (err) {
             return res.status(400).send(err)

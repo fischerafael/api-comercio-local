@@ -19,6 +19,7 @@ module.exports = {
             type: 'Point',
             coordinates: [longitude, latitude]
         }
+        console.log(location)
 
         try {
             const userInfoExists = await Info.findOne({ user: user_id })

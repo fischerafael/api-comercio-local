@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const PointSchema = require('./utils/PointSchema')
 
 const Schema = new mongoose.Schema({
     productName: {
@@ -15,6 +16,15 @@ const Schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+    },
+    info: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Info',
+        required: true
+    },
+    location: {
+        type: PointSchema,
+        index: '2dsphere'
     }
 })
 
